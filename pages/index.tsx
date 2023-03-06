@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { useState , useEffect } from 'react'
+import { motion } from "framer-motion"
 
 import { GiWeight } from 'react-icons/gi'
 import { AiFillGithub } from 'react-icons/ai'
@@ -69,7 +70,7 @@ function Home() {
 
   return (
     <div>
-      <div className='flex flex-col items-center content-center h-screen w-screen px-2 py-10'>
+      <motion.div initial={{ opacity: 0, filter: "blur(10px)" }} animate={{ opacity: 1, filter: "blur(0px)"}} className='flex flex-col items-center content-center h-screen w-screen px-2 py-10'>
         <h1 className='text-2xl font-semibold mt-5'>Calculadora de IMC</h1>
         <form className='flex flex-col' onSubmit={calculaImc}>      
           <div>
@@ -117,8 +118,8 @@ function Home() {
         </form>
         <div className='my-5 text-center'>
           <h1 className={showImc == 0 || isNaN(showImc) ? "block mt-5 text-neutral-200" : "hidden"}>Preencha os campos acima.</h1>
-          <h2 className={showImc == 0 || isNaN(showImc) ? "hidden" : "block mt-5 text-lg"}>Seu imc é: {showImc.toFixed(2)}</h2>
-          <h2 className='text-lg font-semibold'>{estadoPeso}</h2>
+          <motion.h2 initial={{ opacity:0 , y: 5}} animate={{opacity:1, y:0}} className={showImc == 0 || isNaN(showImc) ? "hidden" : "block mt-5 text-lg"}>Seu imc é: {showImc.toFixed(2)}</motion.h2>
+          <motion.h2 initial={{ opacity:0 , y: 5}} animate={{opacity:1, y:0}} className='text-lg font-semibold'>{estadoPeso}</motion.h2>
         </div>
         
 
@@ -159,8 +160,9 @@ function Home() {
             </tr>
           </tbody>
         </table>
-        <h1 className='flex items-center mt-5 text-sm text-neutral-400 pb-10'>Feito por <a href='https://github.com/risixdzn' target='_blank' className='flex items-center hover:text-sky-500 hover:underline'><AiFillGithub className='ml-1'/>risixdzn</a></h1>      </div>      
-    </div>
+        <h1 className='flex items-center mt-5 text-sm text-neutral-400 pb-10'>Feito por <a href='https://github.com/risixdzn' target='_blank' className='flex items-center hover:text-sky-500 hover:underline'><AiFillGithub className='ml-1'/>risixdzn</a></h1>
+      </motion.div>      
+    </div>    
   )
 }
 
