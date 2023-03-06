@@ -47,19 +47,19 @@ function Home() {
       case imc <18.5:
         setEstadoPeso('Você está abaixo do peso.')
         break;
-      case imc >=18.6 && imc <=24.9:
+      case imc >18.5 && imc <=24.9:
         setEstadoPeso("Você tem o peso ideal!")  
         break;  
-      case imc >=25.0 && imc <=29.9:
+      case imc >24.9 && imc <=29.9:
         setEstadoPeso("Você está levemente acima do peso.")  
         break;  
-      case imc >=30.0 && imc <=34.9:
+      case imc >29.9 && imc <=34.9:
         setEstadoPeso("Você tem obesidade grau I.")  
         break;  
-      case imc >=35.0 && imc <=39.9:
+      case imc >34.9 && imc <=39.9:
         setEstadoPeso("Você tem obesidade grau II (severa).") 
         break;   
-      case imc >=40.0:
+      case imc >39.9:
         setEstadoPeso("Você tem obesidade grau III (mórbida).")  
         break;
       default:
