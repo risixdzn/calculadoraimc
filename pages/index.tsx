@@ -3,53 +3,61 @@ import { useState , useEffect } from 'react'
 
 function Home() {
   const [ peso, setPeso ] = useState("");
-  const [ altura, setAltura ] = useState(""); 
-  const [ imc , setImc] = useState(0);
+  const [ altura, setAltura ] = useState("");   
   const [ estadoPeso , setEstadoPeso] = useState("");
+  var [ showImc, setShowImc ] = useState(0);
+ 
+  //const delay = (ms: number) => new Promise(res => setTimeout(res, ms)); 
 
-  const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+  async function calculaImc(event: { preventDefault: () => void; }){
+    event.preventDefault();
 
-  useEffect(()=>{
-    const calculaImc = async (event: { preventDefault: () => void; })=>{
-      event.preventDefault();
+    var imc = 0
+    setShowImc(0);
+    setEstadoPeso("");
+
+    //alert(peso + " " + altura);
   
-      alert(peso + " " + altura);
-  
-      var pesoFormat = parseInt(peso);
-      var alturaFormat = parseInt(altura)/100;   
+    var pesoFormat = parseInt(peso);
+    var alturaFormat = parseInt(altura)/100;   
        
-      alert(pesoFormat + " " + alturaFormat);
-  
-      
-      setImc( pesoFormat / ( alturaFormat * alturaFormat));   
-      await delay(1000);
-      alert(imc);        
-  
-      pesoFormat = 0;
-      alturaFormat= 0;     
-      verificaIMC(imc); 
-    }   
-  },[imc]);
+    //alert(pesoFormat + " " + alturaFormat); 
+    
+    
+    imc = ( pesoFormat / ( alturaFormat * alturaFormat));
+    //await delay(1000);
+    //alert(imc);        
+    pesoFormat = 0;    
+    alturaFormat= 0;     
+    verificaIMC(imc); 
+    setShowImc(imc);
+    resetData();
+  }   
+
+  function resetData (){    
+    setPeso("")
+    setAltura("")
+  }
 
   function verificaIMC (imc: number){       
     switch (true) {
       case imc <18.5:
-        alert('Você está abaixo do peso.')
+        setEstadoPeso('Você está abaixo do peso.')
         break;
       case imc >=18.6 && imc <=24.9:
-        alert("Você tem o peso ideal!")  
+        setEstadoPeso("Você tem o peso ideal!")  
         break;  
       case imc >=25.0 && imc <=29.9:
-        alert("Você está levemente acima do peso.")  
+        setEstadoPeso("Você está levemente acima do peso.")  
         break;  
       case imc >=30.0 && imc <=34.9:
-        alert("Você tem obesidade grau I.")  
+        setEstadoPeso("Você tem obesidade grau I.")  
         break;  
       case imc >=35.0 && imc <=39.9:
-        alert("Você tem obesidade grau II (severa).") 
+        setEstadoPeso("Você tem obesidade grau II (severa).") 
         break;   
       case imc >=40.0:
-        alert("Você tem obesidade grau III (morbida).")  
+        setEstadoPeso("Você tem obesidade grau III (morbida).")  
         break;
       default:
         break;
@@ -71,7 +79,7 @@ function Home() {
         </form>
         
 
-        <h2>{imc == 0 || isNaN(imc) ? "Preencha os campos acima!" : "Seu imc é: " + imc.toFixed(2)}</h2>
+        <h2>{showImc == 0 || isNaN(showImc) ? "Preencha os campos acima!" : "Seu imc é: " + showImc.toFixed(2)}</h2>
         <h2>{estadoPeso}</h2>
       </div>      
     </div>
