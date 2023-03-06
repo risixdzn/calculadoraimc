@@ -59,7 +59,7 @@ function Home() {
         setEstadoPeso("Você tem obesidade grau II (severa).") 
         break;   
       case imc >=40.0:
-        setEstadoPeso("Você tem obesidade grau III (morbida).")  
+        setEstadoPeso("Você tem obesidade grau III (mórbida).")  
         break;
       default:
         break;
@@ -68,7 +68,7 @@ function Home() {
 
   return (
     <div>
-      <div className='flex flex-col items-center content-center h-screen w-screen'>
+      <div className='flex flex-col items-center content-center h-screen w-screen px-2 py-10'>
         <h1 className='text-2xl font-semibold mt-5'>Calculadora de IMC</h1>
         <form className='flex flex-col' onSubmit={calculaImc}>      
           <div>
@@ -114,10 +114,50 @@ function Home() {
          
           <button type='submit' className='bg-gradient-to-b from-sky-600 to-blue-600 rounded-lg px-5 py-2 mt-4 font-semibold text-lg hover:from-sky-400 hover:to-blue-500'>Calcular IMC</button>
         </form>
+        <div className='my-5 text-center'>
+          <h1 className={showImc == 0 || isNaN(showImc) ? "block mt-5 text-neutral-200" : "hidden"}>Preencha os campos acima.</h1>
+          <h2 className={showImc == 0 || isNaN(showImc) ? "hidden" : "block mt-5 text-lg"}>Seu imc é: {showImc.toFixed(2)}</h2>
+          <h2 className='text-lg font-semibold'>{estadoPeso}</h2>
+        </div>
         
-        <h1 className={showImc == 0 || isNaN(showImc) ? "block mt-5 text-neutral-200" : "hidden"}>Preencha os campos acima.</h1>
-        <h2 className={showImc == 0 || isNaN(showImc) ? "hidden" : "block mt-5 text-lg"}>Seu imc é: {showImc.toFixed(2)}</h2>
-        <h2 className='text-lg font-semibold'>{estadoPeso}</h2>
+
+        <table className="table-auto bg-neutral-800 rounded-xl mt-5">
+          <thead>
+            <tr>
+              <th colSpan={2} className='py-2 bg-neutral-500 rounded-t-xl text-lg font-semibold'>Tabela de IMC</th>
+            </tr>
+            <tr>              
+              <th className='py-2 bg-neutral-600 font-semibold'>Valor</th>
+              <th className='py-2 bg-neutral-600 font-semibold'>Estado</th>              
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className='px-8 py-1 bg-neutral-700 text-center'>Menor que 18,5</td>
+              <td className='text-center'>Abaixo do peso.</td>              
+            </tr>
+            <tr>
+              <td className='px-8 py-1 bg-neutral-700 text-center'>Entre 18,6 e 24,9</td>
+              <td className='text-center px-4'>Peso normal.</td>              
+            </tr>
+            <tr>
+              <td className='px-8 py-1 bg-neutral-700 text-center'>Entre 25,0 e 29,9</td>
+              <td className='text-center px-4'>Levemente acima do peso.</td>              
+            </tr>
+            <tr>
+              <td className='px-8 py-1 bg-neutral-700 text-center'>Entre 30,0 e 34,9</td>
+              <td className='text-center px-4'>Obesidade grau I</td>              
+            </tr>
+            <tr>
+              <td className='px-8 py-1 bg-neutral-700 text-center'>Entre 35,0 e 39,9</td>
+              <td className='text-center px-4'>Obesidade grau II (severa)</td>              
+            </tr>
+            <tr>
+              <td className='px-8 py-1 bg-neutral-700 text-center rounded-bl-xl'>Maior que 40,0</td>
+              <td className='text-center px-4'>Obesidade grau III (morbida)</td>              
+            </tr>
+          </tbody>
+        </table>
       </div>      
     </div>
   )
