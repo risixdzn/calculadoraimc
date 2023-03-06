@@ -159,7 +159,7 @@ function Home() {
             </tr>
           </tbody>
         </table>
-        <h1 className='flex items-center mt-5 text-sm text-neutral-400'>Feito por <a href='https://github.com/risixdzn' target='_blank' className='flex items-center hover:text-sky-500 hover:underline'><AiFillGithub className='ml-1'/>risixdzn</a></h1>      </div>      
+        <h1 className='flex items-center mt-5 text-sm text-neutral-400 pb-10'>Feito por <a href='https://github.com/risixdzn' target='_blank' className='flex items-center hover:text-sky-500 hover:underline'><AiFillGithub className='ml-1'/>risixdzn</a></h1>      </div>      
     </div>
   )
 }
