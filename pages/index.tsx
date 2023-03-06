@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { useState , useEffect } from 'react'
 
 import { GiWeight } from 'react-icons/gi'
+import { AiFillGithub } from 'react-icons/ai'
 
 function Home() {
   const [ peso, setPeso ] = useState("");
@@ -158,7 +159,7 @@ function Home() {
             </tr>
           </tbody>
         </table>
-      </div>      
+        <h1 className='flex items-center mt-5 text-sm text-neutral-400'>Feito por <a href='https://github.com/risixdzn' target='_blank' className='flex items-center hover:text-sky-500 hover:underline'><AiFillGithub className='ml-1'/>risixdzn</a></h1>      </div>      
     </div>
   )
 }
