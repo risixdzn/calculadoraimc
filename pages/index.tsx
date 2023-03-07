@@ -70,6 +70,9 @@ function Home() {
 
   return (
     <div>
+      <Head>
+        <title>CalculaIMC</title>
+      </Head>
       <motion.div initial={{ opacity: 0, filter: "blur(10px)" }} animate={{ opacity: 1, filter: "blur(0px)"}} className='flex flex-col items-center content-center h-screen w-screen px-2 py-10'>
         <h1 className='text-2xl font-semibold mt-5'>Calculadora de IMC</h1>
         <form className='flex flex-col' onSubmit={calculaImc}>      
